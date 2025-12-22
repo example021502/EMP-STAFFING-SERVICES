@@ -1,6 +1,7 @@
 import ButtonIcon from "../common/ButtonIcon";
 import ButtonHeadings from "./ButtonHeadings";
 import NavButtons from "./NavButtons";
+import React from "react";
 
 function Navbar() {
   const Settings = (id) => {

@@ -1,3 +1,5 @@
+import React from "react";
+
 const Icon = ({
   size = 22,
   fill = "none",

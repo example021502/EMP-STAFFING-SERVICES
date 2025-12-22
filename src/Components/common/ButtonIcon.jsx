@@ -1,5 +1,6 @@
 import Icon from "./Icon";
 import Settings from "./Settings";
+import React from "react";
 
 function ButtonIcon({
   text,

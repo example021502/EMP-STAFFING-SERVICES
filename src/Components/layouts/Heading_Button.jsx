@@ -1,5 +1,6 @@
 import ColumnHeadings from "./ColumnHeadings";
 import ButtonIcon from "../common/ButtonIcon";
+import React from "react";
 
 function Heading_Button() {
   const handlePostJob = (name) => {
