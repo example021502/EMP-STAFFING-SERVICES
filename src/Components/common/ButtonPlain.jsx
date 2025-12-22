@@ -1,3 +1,5 @@
+import React from "react";
+
 function ButtonPlain({ onSelect, text }) {
   return (
     <button

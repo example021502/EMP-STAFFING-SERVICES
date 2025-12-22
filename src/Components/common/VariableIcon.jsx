@@ -1,4 +1,5 @@
 import Icon from "./Icon";
+import React from "react";
 
 function VariableIcon({ Icon_path, b_radius = "md" }) {
   return (

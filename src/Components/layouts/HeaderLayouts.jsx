@@ -1,3 +1,4 @@
+import React from "react";
 import ButtonIcon from "../common/ButtonIcon";
 import Icon from "../common/Icon";
 import LogoHeadings from "./LogoHeadings";

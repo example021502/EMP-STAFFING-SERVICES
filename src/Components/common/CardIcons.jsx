@@ -1,4 +1,5 @@
 import Icon from "./Icon";
+import React from "react";
 
 function CardIcons({ location, contract_type, stipend_range }) {
   const icons = {
