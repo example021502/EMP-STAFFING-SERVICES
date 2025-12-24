@@ -1,3 +1,5 @@
+import React from "react";
+
 const Icon = ({
   path_1,
   path_2,

@@ -1,4 +1,5 @@
 import Label from "./Label";
+import React from "react";
 
 function CardLabels({ slots_available, date_posted }) {
   return (

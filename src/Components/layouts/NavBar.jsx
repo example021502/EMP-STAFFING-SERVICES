@@ -1,3 +1,4 @@
+import React from "react";
 import ButtonIcon from "../common/ButtonIcon";
 import ButtonHeadings from "./ButtonHeadings";
 import NavButtons from "./NavButtons";
