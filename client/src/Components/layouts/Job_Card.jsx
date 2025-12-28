@@ -27,7 +27,7 @@ function Job_Card({
         </span>
         <div className="flex w-fit text-md flex-row items-center justify-center gap-4 ml-auto">
           <ButtonPlain onSelect={handleSelecting} text="View Details" />
-          <ButtonColor text="Edit" onSelect={handleSelecting} />
+          <ButtonColor  text="Edit" onSelect={handleSelecting} />
         </div>
       </div>
       <CardIcons
