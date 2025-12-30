@@ -1,7 +1,9 @@
 import React from "react";
 
-function Input() {
-  return <input type="text" className="border w-60 p-2" />;
+function Input({ placeholder, type, class_name }) {
+  return (
+    <input type={type} placeholder={placeholder} className={`${class_name}`} />
+  );
 }
 
 export default Input;

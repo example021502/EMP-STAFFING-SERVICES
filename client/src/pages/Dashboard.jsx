@@ -9,7 +9,7 @@ function Dashboard() {
       <NavBar />
       <div className="flex flex-col overflow-y-hidden w-full h-full">
         <HeaderLayouts />
-        <main className="flex-1 overflow-y-auto shadow-inner-lighter flex items-center justify-center">
+        <main className="flex-1 overflow-y-hidden shadow-inner-lighter flex items-start justify-center">
           <Outlet />
         </main>
       </div>

@@ -1,27 +1,21 @@
 import React from "react";
 import Label from "../common/Label";
+import Image from "../common/image";
 
 function ButtonHeadings() {
   return (
-    <div className="flex flex-row gap-2  ">
-      {/* <Logo /> */}
+    <div className="flex flex-row items-center justify-start gap-2">
       <div className="h-12 rounded-full flex items-center justify-center">
-        <img
-          src="https://i.ibb.co/nMCqWxFP/healthcarelogo1.jpg"
-          alt=""
-          className="h-full object-cover rounded-full"
-        />
+        <Image link="https://i.ibb.co/LDNxqKYW/Logo-EPM-1.png" />
       </div>
       <div className="flex w-full flex-col items-start leading-4 justify-center">
         <Label
           text={"EMP STAFFING SERVICES OPC PVT.LTD."}
-          font_size={"xl"}
-          color={"secondary"}
+          class_name="text-sm text-primary text-bold"
         />
         <Label
           text={"Recruitement Management Dashboard"}
-          font_size={"sm"}
-          color={"light"}
+          class_name="text-sm text-light"
         />
       </div>
     </div>
