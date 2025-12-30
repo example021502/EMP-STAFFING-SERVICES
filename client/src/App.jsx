@@ -8,6 +8,7 @@ import JobForm from "./Components/layouts/JobForm";
 import Dashboard from "./pages/Dashboard";
 import Jobs from "./Components/sections/Jobs";
 import Job_Form_data_authContext from "./context/Job_Form_data_authContext";
+import JobApplienceOverview from "./Components/sections/JobApplienceOverview";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,16 +17,16 @@ function App() {
       element: <Dashboard />,
       children: [
         {
-          index: true,
-          element: <Jobs />,
-        },
-        {
-          path: "Jobs",
+          path: "/",
           element: <Jobs />,
         },
         {
           path: "JobForm",
           element: <JobForm />,
+        },
+        {
+          path: "JobApplienceOverview",
+          element: <JobApplienceOverview />,
         },
       ],
     },

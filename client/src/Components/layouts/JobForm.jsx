@@ -25,7 +25,7 @@ function JobForm() {
   return (
     <form
       onSubmit={handleFormSubmission}
-      className="w-[90%] rounded-lg border border-whiter shadow-light p-6 gap-6 flex flex-col"
+      className="w-[90%] rounded-lg border border-whiter shadow-light p-6 gap-6 m-auto flex flex-col"
     >
       <div className="flex w-full flex-row gap-4 flex-wrap">
         <LabelInput

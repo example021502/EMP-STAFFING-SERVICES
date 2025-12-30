@@ -1,6 +1,6 @@
 import React from "react";
 
-const Icon = ({
+const SEttingsIcon = ({
   path_1,
   path_2,
   size = 24,
@@ -32,4 +32,4 @@ const Icon = ({
   </svg>
 );
 
-export default Icon;
+export default SEttingsIcon;

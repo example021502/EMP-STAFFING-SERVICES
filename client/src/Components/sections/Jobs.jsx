@@ -1,8 +1,12 @@
 import React from "react";
-import Heading_Button from "../layouts/Heading_Button";
 import SearchInput from "../common/SearchInput";
 import Job_Card from "../layouts/Job_Card";
+import Label from "../common/Label";
+import ButtonIcon from "../common/ButtonIcon";
+import { useNavigate } from "react-router-dom";
+
 function Jobs() {
+  const navigate = useNavigate();
   const cardDetails = [
     {
       job_name: "Senior Software Engineer",
@@ -10,7 +14,7 @@ function Jobs() {
       location: "Bangalore, India",
       contract_type: "Full-time",
       stipend_range: "15-20 LPA",
-      slots_available: "25",
+      slots_available: "25 available",
       date_posted: "4 days ago",
     },
     {
@@ -19,7 +23,7 @@ function Jobs() {
       location: "Mumbai, India",
       contract_type: "Full-time",
       stipend_range: "20-30 LPA",
-      slots_available: "10",
+      slots_available: "10 available",
       date_posted: "5 days ago",
     },
     {
@@ -28,30 +32,44 @@ function Jobs() {
       location: "Pune, India",
       contract_type: "Contract",
       stipend_range: "18-28 LPA",
-      slots_available: "25",
+      slots_available: "25 available",
       date_posted: "6 days ago",
     },
   ];
 
+  const handlePostJob = () => {
+    navigate("/JobForm");
+  };
+
   return (
-    <div className="w-full gap-5 p-6 flex flex-col overflow-y-auto shadow-inner-lighter">
-      <Heading_Button />
-      <SearchInput />
-      <div className="flex flex-col items-center justify-center gap-8">
-        {cardDetails.map((card, index) => {
-          return (
-            <Job_Card
-              key={index}
-              job_name={card.job_name}
-              status={card.status}
-              location={card.location}
-              contract_type={card.contract_type}
-              stipend_range={card.stipend_range}
-              slots_available={card.slots_available}
-              date_posted={card.date_posted}
+    <div className="w-full gap-5 px-6 pt-4 pb-10 flex flex-col overflow-y-auto shadow-inner-lighter h-screen">
+      <div className="sticky top-0 z-10 w-full gap-4 shadow-light flex flex-col p-4 rounded-small bg-white backdrop-blur-md">
+        <div className="w-full flex flex-row items-center justify-start">
+          <div className="flex w-full flex-1 flex-col items-start leading-4 justify-center">
+            <Label class_name="text-lg" text="Active Job Listings" />
+            <Label
+              class_name="text-sm"
+              text="Recruitment Management Dashboard"
             />
-          );
-        })}
+          </div>
+          <span className="min-w-35 flex h-10">
+            <ButtonIcon
+              text="Post New Job"
+              icon="ri-add-line"
+              id="nav"
+              onSelect={handlePostJob}
+              clicked
+              set_gradient={true}
+              shadow={true}
+            />
+          </span>
+        </div>
+        <SearchInput />
+      </div>
+      <div className="flex flex-col items-start pb-10 justify-center gap-10">
+        {cardDetails.map((card, index) => (
+          <Job_Card key={index} {...card} />
+        ))}
       </div>
     </div>
   );
