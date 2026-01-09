@@ -5,7 +5,11 @@ export const getAllUsers = async () => {
     SELECT * FROM users
   `;
 
-  console.log(users);
-
   return users;
+};
+
+export const getUserById = async (id) => {
+  const user = await sql`
+    SELECT * FROM users WHERE id = ${id}
+  `;
 };
