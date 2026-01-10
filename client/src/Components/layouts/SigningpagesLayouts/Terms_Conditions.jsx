@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Input from "../../common/Input";
+import { signup_form_data_context } from "../../../context/SigningupContext";
+
 function Terms_Conditions() {
+  const { setForm } = useContext(signup_form_data_context);
+
+  const handleTerms_Conditions = (value) => {
+    setForm({
+      ...prev,
+      checkbox: value,
+    });
+  };
   return (
     <motion.div
       initial={{
@@ -15,7 +25,11 @@ function Terms_Conditions() {
       }}
       className="flex flex-row items-start text-xs gap-2 justify-start w-full"
     >
-      <Input type="checkbox" class_name="bg-input_cream" />
+      <Input
+        type="checkbox"
+        class_name="bg-input_cream focus:bg-nevy_blue"
+        onchange={handleTerms_Conditions}
+      />
       <div>
         <p>
           I accept the{" "}

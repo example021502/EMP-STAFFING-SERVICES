@@ -5,8 +5,15 @@ import Input from "../../common/Input";
 import { signup_form_data_context } from "../../../context/SigningupContext";
 
 function Signup_input({ element, display_data }) {
-  const { form, setForm } = useContext(signup_form_data_context);
-  const handleChange = (e) => {};
+  const keys = Object.keys(display_data.signup);
+  const { setForm } = useContext(signup_form_data_context);
+  const handleChange = (value, id) => {
+    setForm((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
   return (
     <motion.div
       initial={{
@@ -22,6 +29,8 @@ function Signup_input({ element, display_data }) {
     >
       <Icon icon={element.icon} class_name={display_data.icon_styles} />
       <Input
+        autocomplete={"new-password"}
+        id={keys}
         onchange={handleChange}
         placeholder={element.placeholder}
         type={element.type}

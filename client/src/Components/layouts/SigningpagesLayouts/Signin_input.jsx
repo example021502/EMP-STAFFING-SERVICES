@@ -26,6 +26,8 @@ function Signin_input({ element, display_data }) {
       >
         <Icon icon={element.icon} class_name={display_data.icon_styles} />
         <Input
+          autocomplete={true}
+          id={element.id}
           placeholder={element.placeholder}
           type={element.type}
           class_name={display_data.input_element_styles}
