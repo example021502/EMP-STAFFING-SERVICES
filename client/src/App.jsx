@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Job_Form_data_authContext from "./context/Job_Form_data_authContext";
 import DashboardSectionContext from "./context/DashboardSectionContext";
 import ListGridViewContext from "./context/ListGridViewContext";
+import ErrorBoundary from "./Components/common/ErrorBoundary";
+
 // Admin imports
 const Admin_Client_Management = lazy(() =>
   import("./pages/Admin_Client_Management")
@@ -39,28 +41,30 @@ function App() {
             {/* Signingup form data */}
             <SigningupDataContext>
               <Router>
-                <Suspense fallback={<Loading />}>
-                  <Routes>
-                    <Route index element={<Home />} />
-                    <Route path="/api/auth/signin" element={<Signin />} />
-                    <Route path="/api/auth/signup" element={<Signup />} />
-                    <Route path="Dashboard" element={<Dashboard />}>
-                      <Route index element={<Jobs />} />
-                      <Route path="JobForm" element={<JobForm />} />
+                <ErrorBoundary>
+                  <Suspense fallback={<Loading />}>
+                    <Routes>
+                      <Route index element={<Home />} />
+                      <Route path="/api/auth/signin" element={<Signin />} />
+                      <Route path="/api/auth/signup" element={<Signup />} />
+                      <Route path="Client/Dashboard" element={<Dashboard />}>
+                        <Route index element={<Jobs />} />
+                        <Route path="JobForm" element={<JobForm />} />
+                        <Route
+                          path="JobApplienceOverview"
+                          element={<JobApplienceOverview />}
+                        />
+                      </Route>
                       <Route
-                        path="JobApplienceOverview"
-                        element={<JobApplienceOverview />}
-                      />
-                    </Route>
-                    <Route
-                      path="Admin_Client_Management"
-                      element={<Admin_Client_Management />}
-                    >
-                      <Route index element={<ContentAppsView />} />
-                    </Route>
-                    <Route path="*" element={<CatchAll />} />
-                  </Routes>
-                </Suspense>
+                        path="Admin/Admin_Client_Management"
+                        element={<Admin_Client_Management />}
+                      >
+                        <Route index element={<ContentAppsView />} />
+                      </Route>
+                      <Route path="*" element={<CatchAll />} />
+                    </Routes>
+                  </Suspense>
+                </ErrorBoundary>
               </Router>
             </SigningupDataContext>
           </ListGridViewContext>

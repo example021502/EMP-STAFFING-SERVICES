@@ -1,16 +1,24 @@
 import React, { useState, useContext } from "react";
 import ButtonIcon from "../../../common/ButtonIcon";
+import { useNavigate } from "react-router-dom";
+
 function NavButtons() {
-  const [buttonName, setButtonName] = useState("Job");
+  const navigate = useNavigate();
+  const [buttonName, setButtonName] = useState("Jobs");
 
   const onSelect = (name) => {
     setButtonName(name);
+    name === "Jobs"
+      ? navigate("")
+      : name === "Interview pipeline"
+      ? navigate("JobApplienceOverview")
+      : "";
   };
 
   const buttons = [
     {
       id: "nav",
-      name: "Job",
+      name: "Jobs",
       icon: "ri-suitcase-line",
     },
     {
