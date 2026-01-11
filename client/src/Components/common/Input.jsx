@@ -3,7 +3,14 @@ import Icon from "./Icon";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "../../styles/index.css";
-function Input({ autocomplete, id, placeholder, type, class_name, onchange }) {
+function Input({
+  autocomplete = false,
+  id,
+  placeholder,
+  type,
+  class_name,
+  onchange,
+}) {
   const isPassword =
     placeholder === "Password" || placeholder === "Confirm Password";
   const [clicked, setClicked] = useState(false);

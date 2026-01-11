@@ -1,7 +1,11 @@
 import React from "react";
 import { useJobForm } from "../../context/Job_Form_data_authContext";
 
-function TextInput({ id, placeholder = "I am waiting for input" }) {
+function TextInput({
+  id,
+  placeholder = "I am waiting for input",
+  class_name = "w-full py-1.5 px-2 border text-sm border-lighter rounded-lg tracking-wide focus:ring-1 focus:ring-lighter focus:outline-none",
+}) {
   const { form_details, setform_details } = useJobForm();
 
   const formatedId = id.replace(/[()]/g, "").split(" ").join("_");
@@ -19,7 +23,7 @@ function TextInput({ id, placeholder = "I am waiting for input" }) {
       id={id}
       onChange={handleChange}
       type="text"
-      className="w-full py-1.5 px-2 border text-sm border-lighter rounded-lg tracking-wide focus:ring-1 focus:ring-lighter focus:outline-none"
+      className={class_name}
       placeholder={`Eg. ${placeholder}`}
     />
   );

@@ -12,7 +12,7 @@ const Admin_Client_Management = lazy(() =>
 const ContentAppsView = lazy(() =>
   import("./Components/layouts/AdminClientManagement/ContentAppsView")
 );
-
+const Settings = lazy(() => import("./pages/Settings"));
 // signing pages imports
 const Signin = lazy(() => import("./pages/Signin"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -27,7 +27,11 @@ import Home from "./pages/Home";
 import SigningupDataContext from "./context/SigningupContext";
 
 const CatchAll = lazy(() => import("./pages/CatchAll"));
-const Loading = () => <div>Loading...</div>;
+const Loading = () => (
+  <div className="w-full h-full text-center items-center justify-center text-xl tracking-wide text-text_b">
+    Loading...
+  </div>
+);
 
 function App() {
   return (
@@ -54,6 +58,7 @@ function App() {
                           path="JobApplienceOverview"
                           element={<JobApplienceOverview />}
                         />
+                        <Route path="Settings" element={<Settings />} />
                       </Route>
                       <Route
                         path="Admin/Admin_Client_Management"

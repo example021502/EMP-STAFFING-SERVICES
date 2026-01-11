@@ -12,6 +12,8 @@ function NavButtons() {
       ? navigate("")
       : name === "Interview pipeline"
       ? navigate("JobApplienceOverview")
+      : name === "Settings"
+      ? navigate("Settings")
       : "";
   };
 
@@ -31,9 +33,14 @@ function NavButtons() {
       name: "Interview pipeline",
       icon: "ri-group-line",
     },
+    {
+      id: "nav",
+      name: "Settings",
+      icon: "ri-settings-5-line",
+    },
   ];
   return (
-    <div className="w-full border-b border-lighter transition-all ease-in-out duration-120 h-full gap-5 flex text-primary flex-col items-center justify-start">
+    <div className="w-full transition-all ease-in-out duration-120 h-full gap-5 flex text-primary flex-col items-center justify-start">
       {buttons.map((button, index) => (
         <ButtonIcon
           key={index}

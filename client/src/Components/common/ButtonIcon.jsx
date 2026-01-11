@@ -30,7 +30,11 @@ function ButtonIcon({
         transition: { type: "tween", duration: 0.2 },
       }}
       onClick={() => onSelect(text)}
-      className={`${className}`}
+      className={`${className} ${
+        text === "Settings"
+          ? "mt-auto after:w-full after:absolute after:-top-3 relative after:left-0 after:border-t after:border-lighter"
+          : ""
+      }`}
     >
       <Icon icon={icon} class_name="text-lg" />
       <Label text={text} />

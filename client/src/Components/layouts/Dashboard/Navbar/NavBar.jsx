@@ -3,14 +3,11 @@ import ButtonIcon from "../../../common/ButtonIcon";
 import NavButtons from "./NavButtons";
 import Icon from "../../../common/Icon";
 import Label from "../../../common/Label";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const Settings = (id) => {
-    alert(`button ${id} clicked!`);
-  };
-
   return (
-    <section className="w-84 px-4 py-2 gap-4 h-full flex flex-col items-center justify-center border-r border-lighter">
+    <section className="w-84 px-4 py-2 pb-6 gap-4 h-full flex flex-col items-center justify-center border-r border-lighter">
       <div className="flex border-b pb-2 border-lighter w-full flex-row items-center justify-start gap-2 transition-all ease-in-out duration-100">
         <span className="bg-gradient-btn text-white rounded-small">
           <Icon icon="ri-building-line" class_name="text-2xl w-8 h-8" />
@@ -21,11 +18,6 @@ function Navbar() {
         </div>
       </div>
       <NavButtons />
-      <ButtonIcon
-        text="Settings"
-        icon="ri-settings-5-line"
-        onSelect={Settings}
-      />
     </section>
   );
 }

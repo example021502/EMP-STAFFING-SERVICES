@@ -9,10 +9,7 @@ function LabelInput({ text, placeholder }) {
     <div className="gap-1 flex-1 flex flex-row flex-wrap items-center justify-start">
       <Label
         text={text}
-        font_size="base"
-        font_family="inter"
-        color="primary"
-        weight="semibold"
+        class_name="font-semibold text-base text-primary font-inter"
       />
       <span className="ml-auto w-full">
         <TextInput id={text} placeholder={placeholder[formatedString]} />
