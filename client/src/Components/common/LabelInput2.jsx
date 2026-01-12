@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useId } from "react";
 import Label from "./Label";
 import SettingsInput from "./SettingsInput";
 
 function LabelInput2({
   text,
   placeholder,
-  type,
+  type = "text",
   onChange,
   input_value,
-  label_style = "font-semibold text-base text-primary",
-  input_style = "w-full py-1 border border-lighter px-2 rounded-extra_small focus:outline-none focus:ring-2 ring-[#d6d6d6]",
+  label_style = "font-bold text-xs text-text_b uppercase tracking-wider",
+  input_style = "w-full text-sm py-2 border border-lighter px-3 rounded-small focus:outline-none focus:ring-2 focus:ring-blue/20 transition-all placeholder:opacity-50 bg-white",
 }) {
+  const generatedId = useId();
+
   return (
-    <div className="gap-1 flex-1 flex flex-col items-start justify-center w-full">
-      <Label text={text} class_name={label_style} />
+    <div className="flex flex-col items-start justify-center w-full gap-1.5 group">
+      <Label
+        text={text}
+        class_name={`${label_style} cursor-pointer`}
+        htmlFor={generatedId}
+      />
+
       <SettingsInput
+        id={generatedId}
         onChange={onChange}
         type={type}
         placeholder={placeholder}

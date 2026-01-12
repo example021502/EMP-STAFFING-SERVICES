@@ -5,17 +5,24 @@ import ContactInformation from "../Components/layouts/Settings/ContactInformatio
 import LocationInformation from "../Components/layouts/Settings/LocationInformation";
 
 import Settings_data from "../Components/layouts/Settings/Settings_data.json";
+
 function Settings() {
   return (
-    <section className="w-full p-4 overflow-y-auto h-full flex flex-col items-start justify-start gap-4 text-text_b_l">
-      <main className="w-full flex flex-col items-start justify-center">
-        <Label text="Company Settings" class_name="font-semibold text-xl" />
+    <div className="w-full p-6 overflow-y-auto h-full flex flex-col items-start justify-start gap-6 text-text_b_l">
+      <header className="w-full flex flex-col items-start justify-center border-b border-lighter pb-4">
         <Label
-          text="Manage your company information and preferences"
-          class_name="font-lighter text-sm"
+          as="h1"
+          text="Company Settings"
+          class_name="font-semibold text-2xl text-text_b"
         />
-      </main>
-      <section className="flex w-full flex-col items-center justify-start gap-8">
+        <Label
+          as="p"
+          text="Manage your company information and preferences"
+          class_name="font-lighter text-sm opacity-80"
+        />
+      </header>
+
+      <div className="flex w-full flex-col items-center justify-start gap-10 max-w-5xl mx-auto">
         <CompanyInformation
           company_information={Settings_data.company_information}
         />
@@ -25,8 +32,8 @@ function Settings() {
         <LocationInformation
           location_information={Settings_data.branch_locations}
         />
-      </section>
-    </section>
+      </div>
+    </div>
   );
 }
 

@@ -1,62 +1,68 @@
-import React, { useState } from "react";
+import React from "react";
 import LabelInput2 from "../../common/LabelInput2";
 import SettingsHeaders from "./SettingsHeaders";
+
 function CompanyInformation({ company_information }) {
   const handleInputChange = (value) => {
-    console.log("Hello");
+    console.log("Updating company field");
   };
 
   return (
-    <main className="w-full flex flex-col border p-8 rounded-small border-lighter shadow-sm items-center justify-start gap-6 text-text_b_l">
+    <section className="w-full flex flex-col border p-6 md:p-8 rounded-small border-lighter shadow-sm items-center justify-start gap-8 bg-white">
       <SettingsHeaders
         icon="ri-building-line"
         icon_bg="bg-nevy_blue"
         heading="Company Information"
         label="Basic details about your organization"
       />
-      <main className="w-full flex flex-col items-start justify-start gap-2">
-        <section className="w-full flex flex-row gap-4 items-center justify-center">
+
+      <div className="w-full flex flex-col items-start justify-start gap-6">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
           <LabelInput2
             text="Company Name"
-            placeholder="Company name"
-            type="Text"
+            placeholder="e.g. EMP Services"
+            type="text"
             onChange={handleInputChange}
             input_value={company_information.company_name}
           />
           <LabelInput2
             text="Registration Number"
-            placeholder="Registration number"
-            type="Text"
+            placeholder="CIN / Registration No."
+            type="text"
             onChange={handleInputChange}
             input_value={company_information.registration_number}
           />
-        </section>
-        <LabelInput2
-          text="Address"
-          placeholder="Address"
-          type="Text"
-          input_style="w-full pb-10 text-left py-1 border border-lighter px-2 rounded-extra_small focus:outline-none focus:ring-2 ring-[#d6d6d6]"
-          onChange={handleInputChange}
-          input_value={company_information.address}
-        />
-        <section className="w-full flex flex-row gap-4 items-center justify-center">
+        </div>
+
+        <div className="w-full">
+          <LabelInput2
+            text="Address"
+            placeholder="Full office address"
+            type="text"
+            input_style="w-full min-h-[100px] text-left py-2 border border-lighter px-3 rounded-extra_small focus:outline-none focus:ring-2 focus:ring-nevy_blue transition-all"
+            onChange={handleInputChange}
+            input_value={company_information.address}
+          />
+        </div>
+
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
           <LabelInput2
             text="City"
             placeholder="City"
-            type="Text"
+            type="text"
             onChange={handleInputChange}
             input_value={company_information.city}
           />
           <LabelInput2
             text="State"
-            placeholder="State"
-            type="Text"
+            placeholder="State / Province"
+            type="text"
             onChange={handleInputChange}
             input_value={company_information.state}
           />
-        </section>
-      </main>
-    </main>
+        </div>
+      </div>
+    </section>
   );
 }
 

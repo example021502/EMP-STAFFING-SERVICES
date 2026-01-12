@@ -2,64 +2,85 @@ import React, { useState } from "react";
 import Icon from "../../common/Icon";
 import Label from "../../common/Label";
 import ButtonIcon from "../../common/ButtonIcon";
+
 const navBarButtons = [
   {
     name: "Client Management",
     icon: "ri-suitcase-line",
-    id: "nav",
+    id: "nav-client",
   },
   {
     name: "Submitted Candidates",
-    icon: "ri-suitcase-line",
-    id: "nav",
+    icon: "ri-group-line",
+    id: "nav-candidates",
   },
 ];
+
 function AdminNavBar() {
-  const [buttonName, setButtonName] = useState("Client Management");
+  const [activeButton, setActiveButton] = useState("Client Management");
+
   const handleNavigating = (name) => {
-    setButtonName(name);
+    setActiveButton(name);
   };
 
   return (
-    <div className="flex flex-col border-r border-light bg-b_white items-center justify-start gap-2 w-2/9 h-full overflow-y-auto ">
-      <span className="w-full border-b border-lighter flex flex-row items-center justify-start p-4">
-        <span className="w-10 h-10 flex bg-gradient-btn text-white items-center justify-center rounded-small m-2">
-          <Icon icon="ri-building-line" class_name="text-md" />
-        </span>
-        <div className="flex flex-col items-start justify-center w-fit h-full">
-          <Label text="EPM Staffing" class_name="text-lg" />
-          <Label text="Services Plateform" class_name="text-xs" />
+    <aside className="flex flex-col border-r border-lighter bg-white items-center justify-start w-64 lg:w-72 h-full overflow-y-auto sticky top-0">
+      <header className="w-full border-b border-lighter flex flex-row items-center justify-start p-4 mb-2">
+        <div
+          className="w-10 h-10 flex bg-gradient-btn text-white items-center justify-center rounded-small shrink-0 shadow-sm"
+          aria-hidden="true"
+        >
+          <Icon icon="ri-building-line" class_name="text-xl" />
         </div>
-      </span>
-
-      <div className="flex flex-col items-center justify-start w-full h-full gap-4 pr-4 pl-6 py-4">
-        {navBarButtons.map((button, index) => (
-          <ButtonIcon
-            key={index}
-            text={button.name}
-            icon={button.icon}
-            id={button.id}
-            onSelect={handleNavigating}
-            clicked={button.name === buttonName}
-            class_name="flex flex-row items-center justify-start gap-2 p-2 hover:bg-lighter rounded-md cursor-pointer w-full"
+        <div className="flex flex-col items-start justify-center ml-3">
+          <Label
+            as="h2"
+            text="EPM Staffing"
+            class_name="text-base font-bold text-text_b"
           />
-        ))}
-      </div>
+          <Label
+            as="span"
+            text="Services Platform"
+            class_name="text-[10px] uppercase tracking-tighter text-text_b_l opacity-70"
+          />
+        </div>
+      </header>
 
-      <div className="pl-6 pr-4 mb-4 flex items-center justify-center w-full">
+      <nav
+        className="flex flex-col items-center justify-start w-full flex-1 gap-2 px-4 py-4"
+        aria-label="Admin Side Navigation"
+      >
+        <ul className="w-full list-none p-0 m-0 flex flex-col gap-2">
+          {navBarButtons.map((button) => {
+            const isCurrent = button.name === activeButton;
+            return (
+              <li key={button.name} className="w-full">
+                <ButtonIcon
+                  text={button.name}
+                  icon={button.icon}
+                  id={button.id}
+                  onSelect={handleNavigating}
+                  clicked={isCurrent}
+                  aria-current={isCurrent ? "page" : undefined}
+                  class_name="w-full justify-start transition-all duration-200"
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <footer className="px-4 pb-6 mt-auto w-full border-t border-lighter pt-4">
         <ButtonIcon
           text="Settings"
           icon="ri-settings-5-line"
-          onSelect={() => {
-            alert("Navigating to Settings");
-          }}
+          onSelect={() => console.log("Settings action")}
           clicked={false}
-          id="nav"
-          set_gradient={false}
-          class_name="flex flex-row items-center justify-start gap-2 p-1  hover:bg-lighter rounded-md "
+          id="nav-settings"
+          class_name="w-full justify-start opacity-80 hover:opacity-100"
         />
-      </div>
-    </div>
+      </footer>
+    </aside>
   );
 }
 

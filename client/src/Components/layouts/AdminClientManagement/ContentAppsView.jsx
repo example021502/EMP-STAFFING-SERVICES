@@ -1,42 +1,54 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import ClientManagementCards from "./ClientManagementCards";
 import Common_Client_Management_Searching_And_View from "./Common_Client_Management_Searching_And_View";
+
 function ContentAppsView() {
   const containerRef = useRef(null);
-  const targetRef = useRef(null);
+  const sentinelRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const container = containerRef.current;
-    const target = targetRef.current;
-    if (!container || !target) return;
-
-    const updateScroll = () => {
-      const container_scrollTop = container.scrollTop;
-      const target_scrollTop = target.scrollTop;
-      if (container_scrollTop > target_scrollTop) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setScrolled(!entry.isIntersecting);
+      },
+      {
+        root: containerRef.current,
+        threshold: 1.0,
+        rootMargin: "-10px 0px 0px 0px",
       }
-    };
+    );
 
-    container.addEventListener("scroll", updateScroll);
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
 
-    return () => container.removeEventListener("scroll", updateScroll);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div
+    <main
       ref={containerRef}
-      className="w-full h-full gap-5 px-6 pt-4 pb-10 flex flex-col transition-all ease-in-out duration-120 overflow-y-auto"
+      className="w-full h-full flex flex-col bg-whiter overflow-y-auto scroll-smooth"
     >
-      <Common_Client_Management_Searching_And_View
-        refer={targetRef}
-        scrolled={scrolled}
+      <div
+        ref={sentinelRef}
+        className="h-px w-full shrink-0"
+        aria-hidden="true"
       />
-      <ClientManagementCards />
-    </div>
+
+      <div className="px-6 pt-2 pb-10 flex flex-col gap-6">
+        <Common_Client_Management_Searching_And_View scrolled={scrolled} />
+
+        <Suspense
+          fallback={
+            <div className="min-h-screen animate-pulse bg-lighter rounded-small" />
+          }
+        >
+          <ClientManagementCards />
+        </Suspense>
+      </div>
+    </main>
   );
 }
 

@@ -5,15 +5,21 @@ import NavBar from "../Components/layouts/Dashboard/Navbar/NavBar";
 
 function Dashboard() {
   return (
-    <div className="w-full h-dvh flex flex-row overflow-y-hidden items-start justify-start">
+    <div className="w-full h-dvh flex flex-row overflow-hidden items-start justify-start bg-b">
       <NavBar />
-      <div className="flex flex-col overflow-y-hidden w-full h-full">
+
+      <div className="flex flex-col w-full h-full overflow-hidden">
         <HeaderLayouts />
-        <main className="flex-1 overflow-y-hidden shadow-inner-lighter flex items-start justify-center">
+
+        <main
+          id="main-content"
+          className="flex-1 overflow-y-auto shadow-inner-lighter flex items-start justify-center bg-white"
+        >
           <Outlet />
         </main>
       </div>
     </div>
   );
 }
+
 export default Dashboard;

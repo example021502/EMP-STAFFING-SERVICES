@@ -14,21 +14,23 @@ function Jobs() {
 
   useEffect(() => {
     const container = containerRef.current;
-    const target = targetRef.current;
-    if (!target || !container) return;
+    if (!container) return;
+
     const updateScroll = () => {
-      if (container.scrollTop > target.scrollTop) {
+      if (container.scrollTop > 20) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
     };
-    container.addEventListener("scroll", updateScroll);
+
+    container.addEventListener("scroll", updateScroll, { passive: true });
     return () => container.removeEventListener("scroll", updateScroll);
   }, []);
 
   const cardDetails = [
     {
+      id: "job-1",
       job_name: "Senior Software Engineer",
       status: "Active",
       location: "Bangalore, India",
@@ -38,6 +40,7 @@ function Jobs() {
       date_posted: "4 days ago",
     },
     {
+      id: "job-2",
       job_name: "Product Manager",
       status: "Active",
       location: "Mumbai, India",
@@ -47,6 +50,7 @@ function Jobs() {
       date_posted: "5 days ago",
     },
     {
+      id: "job-3",
       job_name: "DevOps",
       status: "Active",
       location: "Pune, India",
@@ -58,32 +62,39 @@ function Jobs() {
   ];
 
   const handlePostJob = () => {
-    navigate("JobForm");
+    navigate("Job-form");
   };
 
   return (
-    <div
+    <section
       ref={containerRef}
-      className="w-full gap-5 px-6 pt-4 pb-10 flex flex-col overflow-y-auto shadow-inner-lighter h-screen"
+      className="w-full h-full flex flex-col px-6 pt-4 pb-10 overflow-y-auto shadow-inner-lighter bg-white"
     >
-      <motion.div
+      <motion.header
         ref={targetRef}
         animate={{
           boxShadow: scrolled
-            ? " 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
+            ? "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
             : "0 0px 0px rgba(0, 0, 0, 0)",
+          borderBottom: scrolled
+            ? "1px solid #f1f5f9"
+            : "1px solid transparent",
         }}
-        className="sticky top-0 z-10 w-full gap-4 flex flex-col p-4 rounded-small bg-white backdrop-blur-md"
+        className="sticky top-0 z-20 w-full gap-4 flex flex-col p-4 rounded-small bg-white/95 backdrop-blur-sm"
       >
-        <div className="w-full flex flex-row items-center justify-start">
-          <div className="flex w-full flex-1 flex-col items-start leading-4 justify-center">
-            <Label class_name="text-lg" text="Active Job Listings" />
+        <div className="w-full flex flex-row items-center justify-between">
+          <div className="flex flex-col items-start leading-tight justify-center">
             <Label
-              class_name="text-sm"
+              class_name="text-xl font-semibold text-text_b"
+              text="Active Job Listings"
+            />
+            <Label
+              as="p"
+              class_name="text-sm text-text_b_l opacity-70"
               text="Recruitment Management Dashboard"
             />
           </div>
-          <span className="min-w-35 flex h-10">
+          <div className="min-w-35">
             <ButtonIcon
               text="Post New Job"
               icon="ri-add-line"
@@ -93,16 +104,22 @@ function Jobs() {
               set_gradient={true}
               shadow={true}
             />
-          </span>
+          </div>
         </div>
         <SearchInput />
-      </motion.div>
-      <div className="flex flex-col items-start pb-10 justify-center gap-10">
-        {cardDetails.map((card, index) => (
-          <Job_Card key={index} {...card} />
-        ))}
+      </motion.header>
+
+      <div className="flex flex-col items-start pt-6 pb-20 justify-start gap-6">
+        <Label text="Recent Openings" class_name="sr-only" />
+        <ul className="w-full flex flex-col gap-6 list-none p-0">
+          {cardDetails.map((card) => (
+            <li key={card.id} className="w-full">
+              <Job_Card {...card} />
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </section>
   );
 }
 

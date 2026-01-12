@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import Label from "./Label";
 import TextInput from "./TextInput";
 
 function LabelInput({ text, placeholder }) {
-  let formatedString = text.replace(/[()]/g, "").split(" ").join("_");
+  const formattedId = useMemo(() => {
+    return text
+      .replace(/[()]/g, "")
+      .trim()
+      .split(/\s+/)
+      .join("_")
+      .toLowerCase();
+  }, [text]);
+
+  const placeholderValue = placeholder?.[formattedId] || "";
 
   return (
-    <div className="gap-1 flex-1 flex flex-row flex-wrap items-center justify-start">
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center justify-between w-full min-h-[44px]">
       <Label
+        htmlFor={formattedId}
         text={text}
-        class_name="font-semibold text-base text-primary font-inter"
+        class_name="font-semibold text-base text-primary font-inter whitespace-nowrap cursor-pointer"
       />
-      <span className="ml-auto w-full">
-        <TextInput id={text} placeholder={placeholder[formatedString]} />
-      </span>
+
+      <div className="w-full sm:max-w-[300px] ml-auto">
+        <TextInput id={formattedId} placeholder={placeholderValue} />
+      </div>
     </div>
   );
 }

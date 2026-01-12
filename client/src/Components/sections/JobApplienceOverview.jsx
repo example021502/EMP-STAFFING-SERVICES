@@ -13,71 +13,84 @@ function JobApplienceOverview() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const target = targetRef.current;
     const container = containerRef.current;
-    if (!target || !container) return;
+    if (!container) return;
+
     const updateScroll = () => {
-      if (container.scrollTop > target.scrollTop) {
+      if (container.scrollTop > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
-    container.addEventListener("scroll", updateScroll);
-    return () => {
-      container.removeEventListener("scroll", updateScroll);
-    };
+
+    container.addEventListener("scroll", updateScroll, { passive: true });
+    return () => container.removeEventListener("scroll", updateScroll);
   }, []);
 
   return (
-    <main
+    <section
       ref={containerRef}
-      className="w-full h-full items-start text-primary justify-start flex flex-col px-6 pt-8 pb-60 overflow-y-auto gap-4"
+      className="w-full h-full flex flex-col px-6 pt-8 pb-20 overflow-y-auto gap-4 scroll-smooth"
     >
-      {/* Full stack header */}
-      <motion.div
+      <motion.header
+        ref={targetRef}
         animate={{
           boxShadow: isScrolled
-            ? " 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)"
+            ? "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
             : "0 0px 0px rgba(0, 0, 0, 0)",
+          borderBottom: isScrolled
+            ? "1px solid #e5e7eb"
+            : "1px solid transparent",
         }}
-        ref={targetRef}
-        className="sticky w-full top-0 z-10 flex flex-row items-center justify-between bg-white backdrop-blur-md rounded-small p-4"
+        className="sticky top-0 z-20 flex flex-row items-center justify-between bg-white/80 backdrop-blur-md rounded-small p-4"
       >
-        <div className="flex flex-1 flex-col items-start leading-4 justify-center">
+        <div className="flex flex-1 flex-col items-start justify-center">
           <Label
+            as="h1"
             text="Full Stack Developer - Candidate Pipeline"
-            class_name="text-xl"
+            class_name="text-xl font-semibold text-text_b"
           />
           <Label
+            as="p"
             text="Manage candidates for this position"
-            class_name="text-sm"
+            class_name="text-sm text-text_b_l"
           />
         </div>
 
-        <span className="w-40 flex h-10">
-          <Icon />
-        </span>
-      </motion.div>
+        <div className="w-10 h-10 flex items-center justify-center">
+          <Icon icon="ri-more-2-fill" />
+        </div>
+      </motion.header>
 
-      {/* OverView cards */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.2 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.2, type: "tween" }}
-        className="py-2 w-full"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="w-full"
       >
         <InforCards />
       </motion.div>
 
-      {/* Job Details Card */}
-      <CardJobDetails />
+      <section aria-label="Job details">
+        <CardJobDetails />
+      </section>
 
-      {/* Candidate Overview Cards */}
-      {candidate_details.map((candidate, index) => (
-        <OverviewCards candidate={candidate} key={index} id={index} />
-      ))}
-    </main>
+      <div className="w-full flex flex-col gap-4">
+        <Label
+          as="h2"
+          text="Candidates"
+          class_name="text-lg font-medium mt-4"
+        />
+        <ul className="w-full flex flex-col gap-4 list-none p-0">
+          {candidate_details.map((candidate, index) => (
+            <li key={candidate.id || index}>
+              <OverviewCards candidate={candidate} id={index} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 

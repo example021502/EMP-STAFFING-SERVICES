@@ -2,7 +2,7 @@
 @theme {
   /* main buttons */
   --background-image-gradient-btn: linear-gradient(to right, #ff6f00, #e61203);
-  --color-hover-light: #b9b9b9;
+  --color-hover-light: #e9e9e9;
   --color-hover-medium: #8a8a8a;
   --color-hover-daker: #888888;
 
@@ -15,7 +15,9 @@
   --color-whiter: #f0f0f0;
   --color-input-field: #e2e2e2;
   --color-red-light: #ffb7b7;
+  --color-red-lighter: #f9dbdb;
   --color-red-dark: #810000;
+  --color-red: #ff0800;
 
   --color-blue: #0000ff;
   --color-darkBlue: #000080;
@@ -29,7 +31,7 @@
   --shadow-heavy: 4px 4px 12px 4px rgba(252, 101, 0, 0.4),
     4px 4px 12px 4px #ffffff;
   --shadow-light: 0 0 12px 0 rgba(0, 0, 0, 0.2), 0 0 12px 4px #ffffff;
-
+  --shadow-red_light: 0 4px 8px 0 rgba(255, 8, 0, 0.5);
   --shadow-lighter: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   --shadow-inner-lighter: inset 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
@@ -47,6 +49,7 @@
   --color-md_white: rgba(255, 255, 255, 0.5);
 
   --color-Darkgold: #dd6b20;
+  --color-gold_lighter: #e8a579;
   --color-Darkgold-hover: #b8591a;
   --color-highLightBorder: #ff6964;
   --color-highlightBackground: #fffaca;
@@ -64,7 +67,7 @@
 
   --font-inter: "Inter";
   --font-asap: "Asap";
-  --font-heading: "Abhaya Libre";
+  --font-heading: "Abhaya Libre Medium";
   --font-afacad: "afacad";
 
   --radius-small: 8px;

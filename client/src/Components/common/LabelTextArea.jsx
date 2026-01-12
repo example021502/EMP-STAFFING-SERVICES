@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useId } from "react";
 import Label from "./Label";
 import TextArea from "./TextArea";
 
 function LabelBasicInput({ text, placeholder, type }) {
-  const placehold = placeholder.Job_description;
+  const inputId = useId();
+  const jobDescriptionPlaceholder = placeholder?.Job_description;
+
   return (
-    <div className="gap-1 flex-1 ml-auto flex flex-col flex-wrap items-start justify-start">
+    <div className="flex flex-col flex-1 w-full gap-2 items-start justify-start">
       <Label
+        htmlFor={inputId}
         text={text}
         font_size="base"
         font_family="inter"
         color="primary"
         weight="semibold"
+        class_name="cursor-pointer"
       />
-      <span className="ml-auto flex-1 w-full">
-        <TextArea type={type} placeholder={placehold} />
-      </span>
+
+      <div className="w-full flex-1">
+        <TextArea
+          id={inputId}
+          type={type}
+          placeholder={jobDescriptionPlaceholder}
+        />
+      </div>
     </div>
   );
 }

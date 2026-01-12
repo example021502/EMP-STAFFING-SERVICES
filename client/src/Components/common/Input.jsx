@@ -43,6 +43,7 @@ function Input({
           top: "80%",
           left: 0,
           height: "208px",
+          zIndex: 1000,
         }}
         buttonStyle={{
           border: "none",

@@ -26,7 +26,7 @@ function ButtonIcon({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       animate={{
-        scale: hovered ? 1.05 : 1,
+        scale: hovered ? 1.02 : 1,
         transition: { type: "tween", duration: 0.2 },
       }}
       onClick={() => onSelect(text)}

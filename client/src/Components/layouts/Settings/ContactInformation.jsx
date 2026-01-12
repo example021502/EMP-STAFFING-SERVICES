@@ -3,53 +3,56 @@ import LabelInput2 from "../../common/LabelInput2";
 import SettingsHeaders from "./SettingsHeaders";
 
 function ContactInformation({ contact_information }) {
-  const handleInputChange = () => {
-    console.log("Hi");
+  const handleInputChange = (value) => {
+    // Logic for updating state goes here
   };
+
   return (
-    <main className="w-full flex flex-col border p-8 rounded-small border-lighter shadow-sm items-center justify-start gap-6 text-text_b_l">
+    <section className="w-full flex flex-col border p-6 md:p-8 rounded-small border-lighter shadow-sm items-center justify-start gap-8 bg-white">
       <SettingsHeaders
         icon="ri-mail-line"
         icon_bg="bg-red-dark"
         heading="Contact Information"
         label="How clients and candidates can reach you"
       />
-      <main className="w-full flex flex-col items-start justify-start gap-2">
-        <section className="w-full flex flex-row gap-4 items-center justify-center">
+
+      <div className="w-full flex flex-col items-start justify-start gap-6">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
           <LabelInput2
             text="Email"
-            placeholder="Email"
-            type="Text"
+            placeholder="e.g. contact@company.com"
+            type="email"
             onChange={handleInputChange}
             input_value={contact_information.email}
+            required
           />
           <LabelInput2
             text="Phone"
-            placeholder="Phone number"
-            type="Text"
+            placeholder="+91 00000 00000"
+            type="tel"
             onChange={handleInputChange}
             input_value={contact_information.phone}
           />
-        </section>
+        </div>
 
-        <section className="w-full flex flex-row gap-4 items-center justify-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
           <LabelInput2
             text="Website"
-            placeholder="Website"
-            type="Text"
+            placeholder="https://www.company.com"
+            type="url"
             onChange={handleInputChange}
             input_value={contact_information.website}
           />
           <LabelInput2
             text="LinkedIn"
-            placeholder="Linkedin"
-            type="Text"
+            placeholder="linkedin.com/company/name"
+            type="url"
             onChange={handleInputChange}
             input_value={contact_information.linked_in}
           />
-        </section>
-      </main>
-    </main>
+        </div>
+      </div>
+    </section>
   );
 }
 

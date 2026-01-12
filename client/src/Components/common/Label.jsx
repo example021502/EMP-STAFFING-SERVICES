@@ -11,7 +11,7 @@ function Label({ class_name, text }) {
       animate={{
         opacity: 1,
         scale: 1,
-        transition: { type: "spring", duration: 1, delay: 0.1, stiffness: 60 },
+        transition: { type: "tween", duration: 1, delay: 0.1 },
       }}
       className={class_name}
     >
