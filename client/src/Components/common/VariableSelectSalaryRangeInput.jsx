@@ -1,34 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import YearMonthHourButton from "./YearMonthHourButton";
-import { useJobForm } from "../../context/Job_Form_data_authContext";
+import { Job_Form_Data_Context } from "../../context/Job_Form_data_authContext";
+import Input from "./Input";
 
 function VariableSelectSalaryRangeInput({ placeholder }) {
   const { from_ = "15", to_ = "30" } = placeholder;
-  const { form_details, setform_details } = useJobForm();
+  const { form_details, setform_details } = useContext(Job_Form_Data_Context);
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-
-    const numericValue = value.replace(/[^0-9]/g, "");
-
+  const handleInputChange = (e, id) => {
+    const { value } = e.target;
     setform_details((prev) => ({
       ...prev,
-      [id]: numericValue,
+      [id]: value,
     }));
   };
 
   return (
-    <fieldset className="flex flex-row flex-wrap items-center justify-start gap-3 border-none p-0 m-0">
+    <fieldset className="flex flex-row items-center justify-start gap-1 border-none p-0 m-0">
       <div className="flex flex-row items-center justify-start gap-2">
         <div className="flex flex-col">
-          <input
-            id="salary_min"
+          <Input
+            id="salary min"
             value={form_details.salary_min || ""}
             onChange={handleInputChange}
             type="number"
             inputMode="numeric"
             placeholder={`Eg: ${from_}`}
-            className="border w-24 rounded-small px-3 py-1.5 border-lighter focus:ring-2 focus:ring-blue/20 focus:outline-none text-sm font-medium transition-all"
+            class_name="border w-24 rounded-small px-3 py-1.5 border-lighter focus:ring-2 focus:ring-blue/20 focus:outline-none text-sm font-medium transition-all"
           />
         </div>
 
@@ -43,14 +41,14 @@ function VariableSelectSalaryRangeInput({ placeholder }) {
           <label htmlFor="salary_max" className="sr-only">
             Maximum Salary
           </label>
-          <input
-            id="salary_max"
+          <Input
+            id="salary max"
             value={form_details.salary_max || ""}
             onChange={handleInputChange}
             type="number"
             inputMode="numeric"
             placeholder={`Eg: ${to_}`}
-            className="border w-24 rounded-small px-3 py-1.5 border-lighter focus:ring-2 focus:ring-blue/20 focus:outline-none text-sm font-medium transition-all"
+            class_name="border w-24 rounded-small px-3 py-1.5 border-lighter focus:ring-2 focus:ring-blue/20 focus:outline-none text-sm font-medium transition-all"
           />
         </div>
       </div>

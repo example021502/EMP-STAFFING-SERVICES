@@ -1,8 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Label from "../Components/common/Label";
-
+import { useNavigate } from "react-router-dom";
 function CatchAll() {
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/client/dashboard");
+  };
   return (
     <main className="w-full h-dvh flex flex-col items-center justify-center bg-b_cream p-6 text-center">
       <div className="flex flex-col items-center gap-4 max-w-md">
@@ -24,12 +27,12 @@ function CatchAll() {
           class_name="text-md text-text_b_l mb-4"
         />
 
-        <Link
-          to="/"
-          className="px-8 py-3 bg-red text-text_white rounded-small font-medium hover:bg-red-dark transition-colors shadow-red_light"
+        <span
+          onClick={handleBack}
+          className="cursor-pointer px-8 py-3 bg-red text-text_white rounded-small font-medium hover:bg-red-dark transition-colors shadow-red_light"
         >
           <Label text="Return to Homepage" />
-        </Link>
+        </span>
       </div>
     </main>
   );

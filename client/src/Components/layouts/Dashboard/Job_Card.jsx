@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import ButtonColor from "../../common/ButtonColor";
 import ButtonPlain from "../../common/ButtonPlain";
 import Label from "../../common/Label";
 import SpanLabel from "../../common/SpanLabel";
 import CardIcons from "../../common/CardIcons";
 import { Link } from "react-router-dom";
+import { DashboardSection } from "../../../context/DashboardSectionContext";
 
 function Job_Card({ job_name, status, slots_available, date_posted, ...rest }) {
   const handleEdit = () => {
     alert(`Editing job: ${job_name}`);
   };
-
+  const { setSection } = useContext(DashboardSection);
   return (
     <section className="w-full p-5 rounded-lg shadow-md border border-lighter hover:shadow-lg transition-shadow duration-300 gap-4 flex flex-col items-start justify-center bg-white">
       <div className="w-full flex flex-wrap items-center justify-between gap-4">

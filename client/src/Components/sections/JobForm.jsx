@@ -1,12 +1,12 @@
-import React from "react";
-import { useJobForm } from "../../context/Job_Form_data_authContext";
+import React, { useContext } from "react";
+import { Job_Form_Data_Context } from "../../context/Job_Form_data_authContext";
 import LabelInput from "../common/LabelInput";
 import LabelVariableSalaryRangeSelectInput from "../common/LabelVariableSalaryRangeSelectInput";
 import LabelTextArea from "../common/LabelTextArea";
 import Button from "../common/Button";
 
 function JobForm() {
-  const { form_details, setform_details } = useJobForm();
+  const { form_details, setform_details } = useContext(Job_Form_Data_Context);
 
   const placeholders = {
     Position: "Full Stack Developer",
@@ -53,14 +53,12 @@ function JobForm() {
         <LabelInput
           onChange={setform_details}
           type="number"
-          min="1"
           text="Number of Positions"
           placeholder={placeholders.Number_of_Positions}
         />
         <LabelInput
           onChange={setform_details}
           type="number"
-          min="0"
           text="Year(s) of Experience"
           placeholder={placeholders.Years_of_Experience}
         />

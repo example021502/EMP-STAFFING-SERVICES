@@ -30,7 +30,7 @@ function NavButtons() {
   ];
 
   return (
-    <ul className="w-full h-full flex flex-col items-center justify-start gap-2 list-none p-1 m-0">
+    <ul className="w-full h-full flex flex-col items-center justify-start gap-2 list-none p-1 m-0 overflow-y-auto">
       {buttons.map((button) => {
         const isActive = button.name === section;
 

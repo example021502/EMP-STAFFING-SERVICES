@@ -4,12 +4,12 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "../../styles/index.css";
 function Input({
-  autocomplete = false,
   id,
   placeholder,
   type,
   class_name,
   onchange,
+  autoComplete = false,
 }) {
   const isPassword =
     placeholder === "Password" || placeholder === "Confirm Password";
@@ -75,10 +75,10 @@ function Input({
   ) : (
     <>
       <input
-        autoComplete={autocomplete}
         autoFocus={isfocus}
         onChange={(e) => onChange(e)}
         type={type}
+        autoComplete={autoComplete}
         placeholder={placeholder}
         className={`${class_name} ${isPassword ? "pr-8" : ""}`}
         required

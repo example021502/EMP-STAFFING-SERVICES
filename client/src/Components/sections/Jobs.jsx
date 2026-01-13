@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import SearchInput from "../common/SearchInput";
 import Job_Card from "../layouts/Dashboard/Job_Card";
 import Label from "../common/Label";
@@ -70,9 +69,9 @@ function Jobs() {
       ref={containerRef}
       className="w-full h-full flex flex-col px-6 pt-4 pb-10 overflow-y-auto shadow-inner-lighter bg-white"
     >
-      <motion.header
+      <header
         ref={targetRef}
-        animate={{
+        style={{
           boxShadow: scrolled
             ? "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
             : "0 0px 0px rgba(0, 0, 0, 0)",
@@ -80,7 +79,7 @@ function Jobs() {
             ? "1px solid #f1f5f9"
             : "1px solid transparent",
         }}
-        className="sticky top-0 z-20 w-full gap-4 flex flex-col p-4 rounded-small bg-white/95 backdrop-blur-sm"
+        className={`sticky top-0 z-20 w-full gap-4 flex flex-col p-4 rounded-small bg-white/95 backdrop-blur-sm `}
       >
         <div className="w-full flex flex-row items-center justify-between">
           <div className="flex flex-col items-start leading-tight justify-center">
@@ -107,7 +106,7 @@ function Jobs() {
           </div>
         </div>
         <SearchInput />
-      </motion.header>
+      </header>
 
       <div className="flex flex-col items-start pt-6 pb-20 justify-start gap-6">
         <Label text="Recent Openings" class_name="sr-only" />
